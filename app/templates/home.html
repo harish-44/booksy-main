@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="hero bg-base-100">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <img src="{{url_for('static',filename='img/books.svg')}}" alt="Bookshelves" class="mx-auto w-96 p-10 lg:px-0" />
+      <h1 class="text-5xl font-bold">Hello there {{ current_user.name }}</h1>
+      <p class="py-6">Welcome to the world's first book trading platform</p>
+    </div>
+  </div>
+</div>
+
+{% if books %}
+<div class="carousel carousel-center w-full p-4 space-x-4 bg-base-200 rounded-none py-6">
+  <div class="my-auto text-center px-16 carousel-item">
+    <h1 class="text-5xl font-bold text-base-content">New<br/>Books<br /><span class="text-sm">>>></span></h1>
+    
+  </div>
+  {% for book in books[:5] %}
+  <div class="carousel-item w-md">
+    <div class="card w-56 bg-base-200 text-base-content">
+        <img src="https://books.google.com/books/publisher/content/images/frontcover/{{book[0]}}?fife=w200-h300&source=gbs_api" alt="Book Cover" class="rounded-xl h-48 mx-auto my-4" />
+      <div class="card-body items-center text-center pt-0">
+        <h2 class="card-title">{{book[1]}}</h2>
+        <p>{{book[2]}}</p>
+        <div class="card-actions pt-2">
+          <a class="btn btn-outline" href="/book/{{book[0]}}">Trade with {{book[-1]}}</a>
+        </div>
+      </div>
+    </div>
+  </div> 
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="hero bg-base-100">
+  <div class="hero-content text-center">
+    <div class="max-w-lg">
+      <h1 class="text-5xl font-bold py-6">How it works</h1>
+      <ul class="timeline timeline-vertical">
+        <li>
+          <div class="timeline-start">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+          </div>
+          <div class="timeline-middle timeline-box">Add a book to your library</div>
+          <hr/>
+        </li>
+        <li>
+          <hr/>
+          <div class="timeline-start">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+          </div>
+          <div class="timeline-middle timeline-box">Find an interesting book in other user libraries</div>
+          <hr/>
+        </li>
+        <li>
+          <hr/>
+          <div class="timeline-start">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+          </div>
+          <div class="timeline-middle timeline-box">Offer a trade</div>
+          <hr/>
+        </li>
+        <li>
+          <hr/>
+          <div class="timeline-start">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+          </div>
+          <div class="timeline-middle timeline-box">Confirm the trade</div>
+          <hr/>
+        </li>
+        <li>
+          <hr/>
+          <div class="timeline-start">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" /></svg>
+          </div>
+          <div class="timeline-middle timeline-box">Enjoy reading your new book!</div>
+        </li>
+      </ul>
+      <!-- <img src="{{url_for('static',filename='img/undraw_book_lover_mkck.svg')}}" alt="Bookshelves" class="mx-auto w-96 py-12" /> -->
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

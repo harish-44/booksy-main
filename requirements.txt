@@ -1,0 +1,6 @@
+flask
+flask-login
+mysql-connector-python
+psycopg2-binary
+gunicorn
+requests

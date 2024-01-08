@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="card shrink-0 w-full max-w-lg shadow-2xl bg-base-100 mx-auto my-10">
+  <form class="card-body" method="POST">
+    <h1 class="card-title">Login</h1>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Email</span>
+      </label>
+      <input name="email" type="email" placeholder="email" class="input input-bordered" required />
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text">Password</span>
+      </label>
+      <input name="password" type="password" placeholder="password" class="input input-bordered" required />
+      <label class="label">
+        <a href="{{url_for('auth.sign_up')}}" class="label-text-alt link link-hover">New User?</a>
+      </label>
+    </div>
+    <div class="form-control mt-6">
+      <button class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

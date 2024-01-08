@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Not Found{% endblock %}
+
+{% block content %}
+<div class="hero py-6 bg-base-100">
+  <div class="hero-content py-6 text-center">
+    <div class="max-w-md">
+      <img src="{{url_for('static',filename='img/404.svg')}}" alt="404 Error" class="mx-auto w-96 p-10 lg:px-0" />
+      <!-- <a href="/" class="btn btn-ghost">Home</a> -->
+      <p class="text-xl font-bold">Page not found</p>
+      <p class="py-6">The page you are looking for does not exist</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

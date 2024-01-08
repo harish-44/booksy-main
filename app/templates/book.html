@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}{{book.volumeInfo.title}}{% endblock %}
+
+{% block content %}
+
+<div class="">
+    <div class="card-body">
+        <div class="flex flex-col md:flex-row">
+            <div class="md:w-1/4 mb-6 mx-auto md:mx-0">
+                <img src="https://books.google.com/books/publisher/content/images/frontcover/{{book.id}}?fife=w200-h300&source=gbs_api"
+                    alt="{{book.volumeInfo.title}}" class="rounded-lg shadow-lg lg:mx-auto" />
+            </div>
+            <div class="md:w-2/3 md:pl-6 text-center md:text-left">
+                <h1 class="text-2xl font-bold">{{book.volumeInfo.title}}</h1>
+                <p class="text-xl ">{{book.volumeInfo.authors[0]}}</p>
+                <p class="text-md">{{book.volumeInfo.publishedDate}}</p>
+                <p class="text-md">{{book.volumeInfo.publisher}}</p>
+                <p class="text-md">{{book.volumeInfo.pageCount}} pages</p>
+                {% if book_owners %}
+                <span class="text-md">Owned by:</span>
+                {% for user in book_owners %}
+                <div class="badge badge-outline hover:bg-base-300">
+                    <a href="/user">{{user[1]}}</a>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                <p class="pt-6 text-xl font-semibold text-left">{{book.volumeInfo.description|safe}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    {% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<div class="hero bg-base-100">
+    <div class="text-center">
+        <h1 class="text-4xl font-bold mt-4">
+            {% if books %}
+            Results for {{search_query[:40]}}
+            {% else %}
+            No results for {{search_query[:40]}}
+            {% endif %}
+        </h1>
+        <form class="form-control w-full text-center" method="POST">
+            <input name="search" type="text" placeholder="New search"
+                class="input input-bordered w-full max-w-xs my-6 mx-auto" />
+        </form>
+    </div>
+</div>
+
+{% if books %}
+<div class="grid md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-10 mx-auto my-4">
+    {% for book in books[:15] %}
+    <div class="card card-side bg-base-100 p-6 max-w-md">
+        <a href="{{url_for('book.book_info', book_id=book.id)}}">
+            <img src="{% if book.volumeInfo.imageLinks %}{{book.volumeInfo.imageLinks.thumbnail}}{% endif %}"
+                alt="book cover" class="rounded-md max-h-36 shadow-sm" />
+            <div class="card-body py-0 pr-0">
+                <h2 class="card-title">{% if book.volumeInfo.title %}{{book.volumeInfo.title[:40]}}{% else %}Untitled{%
+                    endif %}</h2>
+                <p class="text-sm text-base-content">{% if book.volumeInfo.authors %}{{book.volumeInfo.authors[0]}}{%
+                    else %}Unknown Author{% endif %}</p>
+                <div class="card-actions justify-end">
+                    <a class="btn btn-outline" href="{{url_for('trades.add_book', book_id=book.id)}}">Add to library</a>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="card shrink-0 w-full max-w-lg shadow-2xl bg-base-100 mx-auto my-10">
+    <form class="card-body w-full" method="POST">
+        <h1 class="card-title">Register</h1>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Email</span>
+        </label>
+        <input name="email" type="email" placeholder="email" class="input input-bordered" required />
+      </div>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Name</span>
+        </label>
+        <input name="name" type="text" placeholder="name" class="input input-bordered" required />
+      </div>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Username</span>
+        </label>
+        <input name="username" type="text" placeholder="username" class="input input-bordered" required />
+      </div>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Password</span>
+        </label>
+        <input name="password" type="password" placeholder="password" class="input input-bordered" required />
+      </div>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Confirm Password</span>
+        </label>
+        <input name="password2" type="password" placeholder="confirm password" class="input input-bordered" required />
+      </div>
+      <div class="form-control mt-6">
+        <button class="btn btn-primary">Register</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

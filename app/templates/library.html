@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Library{% endblock %}
+
+{% block content %}
+{% if books %}
+<div class="hero bg-base-100">
+    <div class="text-center">
+        <div class="max-w-lg">
+            <h1 class="text-5xl font-bold mt-4">Your Library</h1>
+            <p class="pt-6">Here are the books you have added to your library</p>
+        </div>
+        <form class="form-control w-full" method="POST" action="{{url_for('trades.search_book')}}">
+            <input name="search" type="text" placeholder="Add new books"
+                class="input input-bordered w-full max-w-xs my-6 mx-auto" />
+        </form>
+    </div>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-10 mx-auto my-4">
+    {% for book in books[:15] %}
+    <div class="card card-side bg-base-100 p-6 w-md">
+    <a href="{{url_for('book.book_info', book_id=book[0])}}">
+        <img src="{% if book[4] %}{{book[4]}}{% endif %}" alt="book cover" class="rounded-md max-h-36 shadow-sm" />
+        <div class="card-body py-0 pr-0">
+            <h2 class="card-title">{{book[1][:40]}}</h2>
+            <p class="text-sm text-base-content">{% if book[2] %}{{book[2]}}{%
+                else %}Unknown Author{% endif %}</p>
+            <div class="card-actions justify-end mt-auto pb-2">
+                <a class="btn btn-outline" href="{{url_for('trades.remove_book', book_id=book[0])}}">Remove</a>
+            </div>
+        </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="hero bg-base-100">
+    <div class="hero-content text-center">
+        <div class="max-w-md">
+            <img src="{{url_for('static',filename='img/empty.svg')}}" alt="Emptyness"
+                class="mx-auto w-96 p-10 pt-6 lg:px-0" />
+            <!-- <a href="/" class="btn btn-ghost">Home</a> -->
+            <p class="text-xl font-bold">No books in your library</p>
+            <p class="py-6">Add books to your library by searching for them</p>
+            <form class="form-control w-full" method="POST" action="{{url_for('trades.search_book')}}">
+                <input name="search" type="text" placeholder="Add new books"
+                    class="input input-bordered w-full max-w-xs mb-12 mx-auto" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
